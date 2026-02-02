@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Login</title>
+
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="login.css">
+
+<style>
+/* ===== BASE ===== */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #818387;
+  --panel: #1e293b;
+  --accent: #0CFFFF;
+  --text: #ffffff;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: var(--text);
+
+  background:
+    linear-gradient(180deg, var(--bg), #0b1220),
+    url('logo.gif') center / cover no-repeat;
+  background-blend-mode: multiply;
+}
+
+/* ===== LAYOUT ===== */
+.login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ===== FORM ===== */
+.vertical-form {
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.logo {
+  display: block;
+  width: 140px;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+}
+
+.vertical-form legend {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+/* ===== INPUT ===== */
+.vertical-form input[type='text'],
+.vertical-form input[type='password'] {
+  width: 100%;
+  height: 42px;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  font-size: 16px;
+  color: var(--accent);
+  background: #252525;
+  border: 1px solid #000;
+  border-radius: 4px;
+  outline: none;
+}
+
+/* ===== BUTTON ===== */
+.vertical-form input[type='submit'] {
+  width: 60px;
+  height: 60px;
+  margin: 15px auto 0;
+  border-radius: 50%;
+  border: 5px solid #000;
+  background: #252525 url('lock.png') center no-repeat;
+  cursor: pointer;
+}
+
+.vertical-form input[type='submit']:hover {
+  background-color: var(--accent);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+/* ===== MOBILE PORTRAIT ===== */
+@media (max-width: 768px) and (orientation: portrait) {
+  .logo {
+    width: 120px;
+  }
+
+  .vertical-form {
+    max-width: 90%;
+  }
+}
+
+/* ===== PC / LAPTOP LANDSCAPE ===== */
+@media (min-width: 769px) and (orientation: landscape) {
+  .vertical-form {
+    max-width: 400px;
+  }
+
+  .logo {
+    width: 160px;
+  }
+}
+</style>
+</head>
+
+<body class="login">
+
+$(if chap-id)
+<form name="sendin" action="$(link-login-only)" method="post">
+  <input type="hidden" name="username" />
+  <input type="hidden" name="password" />
+  <input type="hidden" name="dst" value="$(link-orig)" />
+  <input type="hidden" name="popup" value="true" />
+</form>
+
+<script src="/md5.js"></script>
+<script>
+function doLogin() {
+  document.sendin.username.value = document.login.username.value;
+  document.sendin.password.value =
+    hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+  document.sendin.submit();
+  return false;
+}
+</script>
+$(endif)
+
+<form class="vertical-form"
+      name="login"
+      action="$(link-login-only)"
+      method="post"
+      $(if chap-id) onsubmit="return doLogin()" $(endif)>
+
+<input type="hidden" name="dst" value="$(link-orig)">
+<input type="hidden" name="popup" value="true">
+
+<legend>
+  <img class="logo" src="logo.gif" alt="Logo">
+</legend>
+
+<input name="username" type="text" placeholder="Username" value="$(username)" required>
+<input name="password" type="password" placeholder="Password" required>
+
+<input type="submit" value="">
+
+<div class="footer">
+  <p>
+    $(if trial == 'yes')
+    Free trial available,
+    <a href="$(link-login-only)?dst=$(link-orig-esc)&username=T-$(mac-esc)">
+      click here
+    </a>
+    $(endif)
+  </p>
+
+  <p>
+    $(if error)
+    <span style="color:#fff;">$(error)</span>
+    $(endif)
+  </p>
+</div>
+
+</form>
+
+<script>
+document.login.username.focus();
+document.oncontextmenu = () => false;
+</script>
+
+</body>
+</html>
