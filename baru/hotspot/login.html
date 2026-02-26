@@ -1,149 +1,194 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86">
-  <title>Login - Rangga Network</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: #fff;
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Courier New', Courier, monospace;
-    }
+<meta charset="utf-8">
+<title>Login</title>
 
-    .amongus-character {
-      position: absolute;
-      z-index: 999;
-      pointer-events: none;
-      filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
-    }
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .pink { width: 100px; animation: moveInside1 20s infinite ease-in-out; }
-    .blue { width: 80px; animation: moveInside2 25s infinite ease-in-out; }
+<link rel="stylesheet" href="login.css">
 
-    @keyframes moveInside1 {
-      0%   { top: 10%; left: 10%; transform: rotate(0deg); }
-      25%  { top: 10%; left: 80%; transform: rotate(90deg); }
-      50%  { top: 80%; left: 80%; transform: rotate(180deg); }
-      75%  { top: 80%; left: 10%; transform: rotate(270deg); }
-      100% { top: 10%; left: 10%; transform: rotate(360deg); }
-    }
+<style>
+/* ===== BASE ===== */
+* {
+  box-sizing: border-box;
+}
 
-    @keyframes moveInside2 {
-      0%   { top: 80%; left: 80%; transform: rotate(0deg); }
-      33%  { top: 20%; left: 50%; transform: rotate(-120deg); }
-      66%  { top: 70%; left: 10%; transform: rotate(-240deg); }
-      100% { top: 80%; left: 80%; transform: rotate(-360deg); }
-    }
+:root {
+  --bg: #818387;
+  --panel: #1e293b;
+  --accent: #0CFFFF;
+  --text: #ffffff;
+}
 
-    .container-login {
-      background: rgba(20, 20, 20, 0.95);
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 25px rgba(0, 212, 255, 0.2);
-      text-align: center;
-      z-index: 1;
-      width: 300px;
-      border: 1px solid #333;
-      backdrop-filter: blur(5px);
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: var(--text);
 
-    .title { color: #00d4ff; font-weight: bold; margin-bottom: 5px; letter-spacing: 2px; }
-    .sub-title { color: #888; font-size: 11px; margin-bottom: 20px; }
-    
-    input { 
-      background: #222; 
-      color: #fff; 
-      border: 1px solid #444; 
-      padding: 12px; 
-      margin: 8px 0; 
-      border-radius: 8px; 
-      width: 90%;
-      outline: none;
-    }
-    
-    input:focus { border-color: #00d4ff; }
+  background:
+    linear-gradient(180deg, var(--bg), #0b1220),
+    url('er.gif') center / cover no-repeat;
+  background-blend-mode: multiply;
+}
 
-    .btn-submit { 
-      background: #00d4ff; 
-      color: #000; 
-      border: none; 
-      padding: 12px; 
-      margin-top: 10px; 
-      cursor: pointer; 
-      border-radius: 8px; 
-      font-weight: bold; 
-      width: 98%;
-    }
+/* ===== LAYOUT ===== */
+.login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
-    .menu-items { 
-      background: #111; 
-      margin-top: 20px; 
-      padding: 10px; 
-      border-radius: 10px; 
-      font-size: 12px;
-      border: 1px solid #222;
-    }
-  </style>
+/* ===== FORM ===== */
+.vertical-form {
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.logo {
+  display: block; 
+  width: 140px;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+}
+
+.vertical-form legend {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+/* ===== INPUT ===== */
+.vertical-form input[type='text'],
+.vertical-form input[type='password'] {
+  width: 100%;
+  height: 42px;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  font-size: 16px;
+  color: var(--accent);
+  background: #252525;
+  border: 1px solid #000;
+  border-radius: 4px;
+  outline: none;
+}
+
+/* ===== BUTTON ===== */
+.vertical-form input[type='submit'] {
+  width: 60px;
+  height: 60px;
+  margin: 15px auto 0;
+  border-radius: 50%;
+  border: 5px solid #000;
+  background: #252525 url('lock.png') center no-repeat;
+  cursor: pointer;
+}
+
+.vertical-form input[type='submit']:hover {
+  background-color: var(--accent);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+/* ===== MOBILE PORTRAIT ===== */
+@media (max-width: 768px) and (orientation: portrait) {
+  .logo {
+    width: 120px;
+  }
+
+  .vertical-form {
+    max-width: 90%;
+  }
+}
+
+/* ===== PC / LAPTOP LANDSCAPE ===== */
+@media (min-width: 769px) and (orientation: landscape) {
+  .vertical-form {
+    max-width: 400px;
+  }
+
+  .logo {
+    width: 160px;
+  }
+}
+</style>
 </head>
-<body>
 
-  <img src="amongus.png" alt="Among Us Pink" class="amongus-character pink">
-  <img src="amongus1.png" alt="Among Us Blue" class="amongus-character blue">
+<body class="login">
 
-  <div class="container-login">
-    <div class="title">RANGGA NETWORK</div>
-    <div class="sub-title">MEMBER ONLY ACCESS</div>
+$(if chap-id)
+<form name="sendin" action="$(link-login-only)" method="post">
+  <input type="hidden" name="username" />
+  <input type="hidden" name="password" />
+  <input type="hidden" name="dst" value="$(link-orig)" />
+  <input type="hidden" name="popup" value="true" />
+</form>
 
-    <!-- FORM LOGIN DENGAN CHAP -->
-    $(if chap-id)
-    <form name="sendin" action="$(link-login-only)" method="post">
-      <input type="hidden" name="username" />
-      <input type="hidden" name="password" />
-      <input type="hidden" name="dst" value="$(link-orig)" />
-      <input type="hidden" name="popup" value="true" />
-    </form>
+<script src="/md5.js"></script>
+<script>
+function doLogin() {
+  document.sendin.username.value = document.login.username.value;
+  document.sendin.password.value =
+    hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+  document.sendin.submit();
+  return false;
+}
+</script>
+$(endif)
 
-    <script src="/md5.js"></script>
-    <script>
-    function doLogin() {
-      document.sendin.username.value = document.login.username.value;
-      document.sendin.password.value =
-        hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
-      document.sendin.submit();
-      return false;
-    }
-    </script>
+<form class="vertical-form"
+      name="login"
+      action="$(link-login-only)"
+      method="post"
+      $(if chap-id) onsubmit="return doLogin()" $(endif)>
+
+<input type="hidden" name="dst" value="$(link-orig)">
+<input type="hidden" name="popup" value="true">
+
+<legend>
+  <img class="logo" src="jjk.gif" alt="Logo">
+</legend>
+
+<input name="username" type="text" placeholder="Username" value="$(username)" required>
+<input name="password" type="password" placeholder="Password" required>
+
+<input type="submit" value="">
+
+<div class="footer">
+  <p>
+    $(if trial == 'yes')
+    Free trial available,
+    <a href="$(link-login-only)?dst=$(link-orig-esc)&username=T-$(mac-esc)">
+      click here
+    </a>
     $(endif)
+  </p>
 
-    <form name="login" action="$(link-login-only)" method="post"
-          $(if chap-id) onsubmit="return doLogin()" $(endif)>
-      <input type="hidden" name="dst" value="$(link-orig)" />
-      <input type="hidden" name="popup" value="true" />
-      
-      <input type="text" name="username" placeholder="Username" value="$(username)" required />
-      <input type="password" name="password" placeholder="Password" required />
-      
-      <button class="btn-submit" type="submit">LOGIN</button>
-    </form>
+  <p>
+    $(if error)
+    <span style="color:#fff;">$(error)</span>
+    $(endif)
+  </p>
+</div>
 
-    <div class="menu-items">
-      <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-        <span>Paket Bulanan</span> <span>Rp 35.000</span>
-      </div>
-      <div style="font-size: 10px; color: #555;">Hubungi admin untuk aktivasi member.</div>
-    </div>
-  </div>
+</form>
 
 <script>
 document.login.username.focus();
+document.oncontextmenu = () => false;
 </script>
 
 </body>
